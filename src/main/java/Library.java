@@ -20,6 +20,7 @@ public class Library {
     public void addBook(Book book) {
         if (this.books.size() < this.capacity) {
             this.books.add(book);
+            updateGenreHashMap(book);
         }
     }
 
@@ -43,7 +44,20 @@ public class Library {
         borrower.addBook(borrowedBook);
     }
 
+    public void updateGenreHashMap(Book book){
+        String genre = book.getGenre();
+        if(this.booksByGenre.containsKey(genre)){
+            int count = booksByGenre.get(genre);
+            count++;
+            this.booksByGenre.put(genre, count);
+        } else {
+            this.booksByGenre.put(genre, 1);
+        }
+
+    }
+
     public int getNumberOfBooksByGenre(String genre) {
         return booksByGenre.get(genre);
     }
+
 }

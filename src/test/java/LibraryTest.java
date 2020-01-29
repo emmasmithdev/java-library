@@ -77,4 +77,11 @@ public class LibraryTest {
     public void canGetNumberOfBooksByGenre(){
         assertEquals(2, library.getNumberOfBooksByGenre("drama"));
     }
+
+    @Test
+    public void genreHashMapUpdatesOnBookAdded(){
+        library.addBook(book1);
+        assertEquals(2, library.getNumberOfBooksByGenre("drama"));
+        assertEquals(2, library.getNumberOfBooksByGenre("scifi"));
+    }
 }
